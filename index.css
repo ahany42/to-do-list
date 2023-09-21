@@ -1,0 +1,46 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+*{
+    font-family: 'Poppins', sans-serif;
+}
+.title{
+    display: flex;
+    justify-content:center;
+    color:#395144;
+    font-weight: 700;
+}
+.todocontainer{
+    display:flex;
+    justify-content: center;
+    padding-top:2em;
+    position:relative;
+    z-index:4;
+}
+.inputtext{
+    border-radius:0.5em;
+    width:40em;
+    height:3em;
+    margin-right:1em;
+    border-color: black;
+}
+::placeholder{
+    text-align: center;
+    color:black;
+    font-size:1.5em;
+}
+.addbtn{
+    padding:0.5em;
+    border-width:2px;
+    border-style:solid;
+    border-radius:0.5em;
+    background-color:#395144; ;
+    color: white;
+    cursor: pointer;
+}
+.deleteall{
+    display:flex;
+    justify-content:center;
+    margin-left:34em;
+    margin-top:1em;
+    font-weight: 500;
+    cursor: pointer;
+}
