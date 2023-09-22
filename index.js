@@ -38,7 +38,7 @@ function tasktoarr(taskbody){
     };
     if(task.body!==" ")
     taskarr.push(task);
- 
+  
     }
   function addelements(taskarr){
     taskcontainer.innerHTML=" ";
@@ -52,15 +52,15 @@ function tasktoarr(taskbody){
      let deletebtn = document.createElement("span");
      deletebtn.className="del";
      deletebtn.innerHTML="<i class='fa-solid fa-trash-can' id='bin'></i>";
-
      deletebtn.addEventListener("click",(e)=>{
       e.target.parentElement.parentElement.remove();
       removefromlocal(task.id);
+  
      })
 
      newdiv.appendChild(deletebtn);
      save(taskarr);
-     console.log(newdiv);
+    
    
       }
     })
@@ -70,9 +70,8 @@ function tasktoarr(taskbody){
   }
   
   function save(taskarr){
-      console.log(input.value);
       window.localStorage.setItem("tasks",JSON.stringify(taskarr));
-     
+      console.log(taskarr.length);
     }
 
 function deletallfn(){
@@ -85,8 +84,11 @@ function deletallfn(){
   function removefromlocal(taskid){
    taskarr=taskarr.filter((task)=> task.id != taskid);
    save(taskarr);
+   
   }
 
+    
+     
 
 
 

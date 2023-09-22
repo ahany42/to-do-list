@@ -6,10 +6,17 @@
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     </head>
     <body>
-       <h1 class="title">To Do List</h1>
+       <h1 class="title"> <i id="todoicon"class="fa-solid fa-square-check"></i>To Do List</h1>
+       <div class="social">
+       
+       <a id="github" class="fa-brands fa-github" href="https://github.com/ahany42"></a>
+        
+        <a id="email" class="fa-solid fa-envelope" href="mailto:ahanyfathy42@gmail.com"></a>
+   
+    </div>
        <div class="todocontainer">
         <div>
-       <input class="inputtext" type="text" placeholder="Write your To do here..."  >
+       <input class="inputtext" type="text" maxlength="100" placeholder="Write your To do here..."  >
        <a class="addbtn">Add</a>
        <h2 class="deleteall">Delete All</h2>
     </div>
@@ -18,6 +25,7 @@
     <div class="tasks" id="tasks">
 
     </div>
+    
     </body>
     
     <script src="index.js"></script>
