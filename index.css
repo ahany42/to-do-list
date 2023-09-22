@@ -37,10 +37,7 @@
     cursor: pointer;
 }
 .deleteall{
-    display:flex;
-    justify-content:center;
-    margin-left:34em;
-    margin-top:1em;
-    font-weight: 500;
+    color:rgb(119, 11, 11);
+    font-weight:800;
     cursor: pointer;
 }
