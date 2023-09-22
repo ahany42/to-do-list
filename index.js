@@ -3,6 +3,8 @@ var addbtn = document.querySelector(".addbtn");
 var taskcontainer = document.getElementById("tasks");
 var deleteall = document.querySelector(".deleteall");
 var taskarr = [];
+var i =1;
+
 // window.localStorage.clear();
 if(window.localStorage.getItem("tasks")){
    taskarr = JSON.parse(window.localStorage.getItem("tasks"));
@@ -14,7 +16,7 @@ else{
 function addfn(){
   if(input.value !== "")
 { 
-  tasktoarr(input.value);
+  tasktoarr(i +" - " + input.value);
   addelements(taskarr);
 
   input.value=" ";
@@ -30,7 +32,7 @@ function tasktoarr(taskbody){
     };
     if(task.body!==" ")
     taskarr.push(task);
-    
+    i++;
     }
   function addelements(taskarr){
     taskcontainer.innerHTML=" ";
@@ -38,11 +40,12 @@ function tasktoarr(taskbody){
       if(task.body !==" "){
     const newdiv=document.createElement("div");
      taskcontainer.appendChild(newdiv);
+     newdiv.className="taskbody";
      newdiv.innerText=task.body;
      taskcontainer.setAttribute("task-id",task.id);
      let deletebtn = document.createElement("span");
      deletebtn.className="del";
-     deletebtn.innerHTML="delete";
+     deletebtn.innerHTML="<i class='fa-solid fa-trash-can'></i>";
      newdiv.appendChild(deletebtn);
      save(taskarr);
       }
