@@ -33,8 +33,10 @@ function tasktoarr(taskbody){
     const task = {
       id:Date.now(),
       body:taskbody,
-      color:"",
+      color:"black",
       check:false,
+      textdecoration:"none",
+      backgroundcolor:"white",
     };
     if(task.body!==" ")
     taskarr.push(task);
@@ -50,25 +52,35 @@ function tasktoarr(taskbody){
      newdiv.innerText=task.body;
      let checkbox = document.createElement("span");
      checkbox.className="checkbox";
-     checkbox.innerHTML="<i class='fa-regular fa-square-check'></i>";
+     checkbox.innerHTML="<i class='fa-solid fa-square-check'></i>"
      newdiv.appendChild(checkbox);
      checkbox.addEventListener("click",(e)=>{
       if(task.check==true){
-        task.color="black";
+        task.color="#395144";
+        task.textdecoration="line-through";
         task.check=false;
+        task.backgroundcolor="#D3D3D3";
+        newdiv.style.backgroundColor=task.backgroundcolor;
         checkbox.style.color=task.color;
+        newdiv.style.textDecoration=task.textdecoration;
       }
       else{
-        task.color="red";
+        task.color="black";
+        task.textdecoration="none";
         task.check=true;
+        task.backgroundcolor="white";
+        newdiv.style.backgroundColor=task.backgroundcolor;
         checkbox.style.color=task.color;
+        newdiv.style.textDecoration=task.textdecoration;
       }
      
      save(taskarr);
   
     
      })
-   
+     checkbox.style.color=task.color;
+     newdiv.style.textDecoration=task.textdecoration;
+     newdiv.style.backgroundColor=task.backgroundcolor;
      taskcontainer.setAttribute("task-id",task.id);
      let deletebtn = document.createElement("span");
      deletebtn.className="del";
