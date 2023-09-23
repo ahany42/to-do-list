@@ -99,8 +99,20 @@
 #github{
     padding-right:1em;
 }
+.checkbox{
+    display: flex;
+    margin-right:0;
+    margin-left: auto;
+    justify-items: center;
+    font-size:1.1em;
+    padding-left:0.5em;
+}
+
+
 @media (max-width:1560px){
     .taskbody{
         height:4em;
+        font-size:1.3em;
+        font-weight:600;
     }
 }

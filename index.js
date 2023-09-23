@@ -29,12 +29,11 @@ else{
 }
 }
 
-
 function tasktoarr(taskbody){
     const task = {
       id:Date.now(),
       body:taskbody,
-     
+      check:false,
     };
     if(task.body!==" ")
     taskarr.push(task);
@@ -48,6 +47,25 @@ function tasktoarr(taskbody){
      taskcontainer.appendChild(newdiv);
      newdiv.className="taskbody";
      newdiv.innerText=task.body;
+     let checkbox = document.createElement("span");
+     checkbox.className="checkbox";
+     checkbox.innerHTML="<i class='fa-regular fa-square-check'></i>";
+     newdiv.appendChild(checkbox);
+     checkbox.addEventListener("click",(e)=>{
+      if(task.check==true){
+        checkbox.style.color="black";
+        task.check=false;
+      }
+      else{
+        checkbox.style.color="red";
+        task.check=true;
+      }
+     
+     save(taskarr);
+  
+    
+     })
+   
      taskcontainer.setAttribute("task-id",task.id);
      let deletebtn = document.createElement("span");
      deletebtn.className="del";
@@ -55,7 +73,7 @@ function tasktoarr(taskbody){
      deletebtn.addEventListener("click",(e)=>{
       e.target.parentElement.parentElement.remove();
       removefromlocal(task.id);
-  
+    
      })
 
      newdiv.appendChild(deletebtn);
@@ -86,9 +104,4 @@ function deletallfn(){
    save(taskarr);
    
   }
-
-    
-     
-
-
 
