@@ -33,6 +33,7 @@ function tasktoarr(taskbody){
     const task = {
       id:Date.now(),
       body:taskbody,
+      color:"",
       check:false,
     };
     if(task.body!==" ")
@@ -53,12 +54,14 @@ function tasktoarr(taskbody){
      newdiv.appendChild(checkbox);
      checkbox.addEventListener("click",(e)=>{
       if(task.check==true){
-        checkbox.style.color="black";
+        task.color="black";
         task.check=false;
+        checkbox.style.color=task.color;
       }
       else{
-        checkbox.style.color="red";
+        task.color="red";
         task.check=true;
+        checkbox.style.color=task.color;
       }
      
      save(taskarr);
