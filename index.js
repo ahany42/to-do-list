@@ -3,8 +3,10 @@ var addbtn = document.querySelector(".addbtn");
 var taskcontainer = document.getElementById("tasks");
 var deleteall = document.querySelector(".deleteall");
 var taskarr = [];
-
-
+var totaltasks = document.querySelector(".totaltasks");
+var checknumdiv = document.querySelector(".checknumber");
+totaltasks.innerHTML="Total Tasks: " + taskarr.length;
+// checkcount(taskarr);
 
 // window.localStorage.clear();
 if(window.localStorage.getItem("tasks")){
@@ -43,6 +45,7 @@ function tasktoarr(taskbody){
   
     }
   function addelements(taskarr){
+    totaltasks.innerHTML="Total Tasks: " + taskarr.length;
     taskcontainer.innerHTML=" ";
     taskarr.forEach((task)=>{
       if(task.body !==" "){
@@ -55,23 +58,25 @@ function tasktoarr(taskbody){
      checkbox.innerHTML="<i class='fa-solid fa-square-check'></i>"
      newdiv.appendChild(checkbox);
      checkbox.addEventListener("click",(e)=>{
-      if(task.check==true){
+      if(task.check==false){
         task.color="#395144";
         task.textdecoration="line-through";
-        task.check=false;
+        task.check=true;
         task.backgroundcolor="#D3D3D3";
         newdiv.style.backgroundColor=task.backgroundcolor;
         checkbox.style.color=task.color;
         newdiv.style.textDecoration=task.textdecoration;
+        save(taskarr);
       }
       else{
         task.color="black";
         task.textdecoration="none";
-        task.check=true;
+        task.check=false;
         task.backgroundcolor="white";
         newdiv.style.backgroundColor=task.backgroundcolor;
         checkbox.style.color=task.color;
         newdiv.style.textDecoration=task.textdecoration;
+        save(taskarr);
       }
      
      save(taskarr);
@@ -86,14 +91,14 @@ function tasktoarr(taskbody){
      deletebtn.className="del";
      deletebtn.innerHTML="<i class='fa-solid fa-trash-can' id='bin'></i>";
      deletebtn.addEventListener("click",(e)=>{
-      e.target.parentElement.parentElement.remove();
-      removefromlocal(task.id);
+    e.target.parentElement.parentElement.remove();
+    save(taskarr);
+    removefromlocal(task.id);
     
      })
 
      newdiv.appendChild(deletebtn);
      save(taskarr);
-    
    
       }
     })
@@ -104,12 +109,14 @@ function tasktoarr(taskbody){
   
   function save(taskarr){
       window.localStorage.setItem("tasks",JSON.stringify(taskarr));
-      console.log(taskarr.length);
+      // checkcount(taskarr);
     }
 
 function deletallfn(){
   window.localStorage.clear();
   window.location.reload();
+  totaltasks.innerHTML="Total Tasks: " + taskarr.length;
+
 }
   addbtn.addEventListener("click",addfn);
   deleteall.addEventListener("click",deletallfn);
@@ -117,6 +124,17 @@ function deletallfn(){
   function removefromlocal(taskid){
    taskarr=taskarr.filter((task)=> task.id != taskid);
    save(taskarr);
-   
+   totaltasks.innerHTML="Total Tasks: " + taskarr.length;
+  //  checkcount(taskarr);
+   window.reload();
   }
 
+// function checkcount(taskarr){
+//   let checknum=0;
+//   taskarr.forEach((task)=>{
+//     if(task.check==true)
+//     checknum++;
+//   })
+  
+//   checknumdiv.innerHTML="Completed Tasks" + checknum;
+// }
