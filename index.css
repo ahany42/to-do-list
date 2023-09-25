@@ -109,8 +109,13 @@
     font-size:1.1em;
     padding-left:0.5em;
 }
-.todotasks,.checknumber,.totaltasks{
-    display: none;
+.insights{
+    display:flex;
+    justify-content:space-between;
+    width:40%;
+    margin-left: auto;
+    margin-right: auto;
+  
 
 }
 
@@ -156,5 +161,11 @@
         height:4em;
         font-size:1.3em;
         font-weight:600;
+    }
+   
+}
+@media (max-width:1100px){
+    .insights{
+        width:70%;
     }
 }

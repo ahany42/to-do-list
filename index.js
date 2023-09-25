@@ -133,7 +133,7 @@ function deletallfn(){
    taskarr=taskarr.filter((task)=> task.id != taskid);
    save(taskarr);
    window.location.reload();
-   totaltasks.innerHTML="Total Tasks: " + taskarr.length;
+   totaltasks.innerHTML="Total Tasks: " + taskarr.length + " ";
    checkcount(taskarr);
 
   }
@@ -145,8 +145,8 @@ function checkcount(taskarr){
     checknum++;
   })
   
-  checknumdiv.innerHTML="Completed Tasks " + checknum;
-  checktodonumdiv.innerHTML="Tasks To do " + (+ taskarr.length - checknum);
+  checknumdiv.innerHTML=" Completed Tasks: " + checknum + " ";
+  checktodonumdiv.innerHTML=" Tasks To do: "  +  (+ taskarr.length - checknum) + " ";
   
  
  
