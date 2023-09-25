@@ -176,5 +176,5 @@ function checkcount(taskarr){
   }  
   counter++;
   progressValue.innerHTML=counter + "%";
-  circularProgress.style.background = `conic-gradient(#395144 ${counter * 3.6}deg, #ededed 0deg)`  
+  circularProgress.style.background = `conic-gradient(#395144 ${counter * 3.6}deg, #D3D3D3 0deg)`  
   }, 40);
