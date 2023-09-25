@@ -5,8 +5,9 @@ var deleteall = document.querySelector(".deleteall");
 var taskarr = [];
 var totaltasks = document.querySelector(".totaltasks");
 var checknumdiv = document.querySelector(".checknumber");
+var checktodonumdiv = document.querySelector(".todotasks");
 totaltasks.innerHTML="Total Tasks: " + taskarr.length;
-// checkcount(taskarr);
+checkcount(taskarr);
 
 // window.localStorage.clear();
 if(window.localStorage.getItem("tasks")){
@@ -58,6 +59,7 @@ function tasktoarr(taskbody){
      checkbox.innerHTML="<i class='fa-solid fa-square-check'></i>"
      newdiv.appendChild(checkbox);
      checkbox.addEventListener("click",(e)=>{
+     
       if(task.check==false){
         task.color="#395144";
         task.textdecoration="line-through";
@@ -67,7 +69,8 @@ function tasktoarr(taskbody){
         checkbox.style.color=task.color;
         newdiv.style.textDecoration=task.textdecoration;
         save(taskarr);
-      }
+      
+    }
       else{
         task.color="black";
         task.textdecoration="none";
@@ -79,10 +82,8 @@ function tasktoarr(taskbody){
         save(taskarr);
       }
      
-     save(taskarr);
-  
-    
      })
+
      checkbox.style.color=task.color;
      newdiv.style.textDecoration=task.textdecoration;
      newdiv.style.backgroundColor=task.backgroundcolor;
@@ -92,24 +93,26 @@ function tasktoarr(taskbody){
      deletebtn.innerHTML="<i class='fa-solid fa-trash-can' id='bin'></i>";
      deletebtn.addEventListener("click",(e)=>{
     e.target.parentElement.parentElement.remove();
-    save(taskarr);
     removefromlocal(task.id);
-    
+  
      })
-
+     
      newdiv.appendChild(deletebtn);
-     save(taskarr);
-   
+     
       }
     })
-
-  
     
+    save(taskarr);
+   
+  
   }
   
   function save(taskarr){
+    if(window.localStorage.getItem("tasks")){
+      window.localStorage.setItem("tasks",JSON.stringify(""));
+    }
       window.localStorage.setItem("tasks",JSON.stringify(taskarr));
-      // checkcount(taskarr);
+      checkcount(taskarr);
     }
 
 function deletallfn(){
@@ -124,17 +127,19 @@ function deletallfn(){
   function removefromlocal(taskid){
    taskarr=taskarr.filter((task)=> task.id != taskid);
    save(taskarr);
+   window.location.reload();
    totaltasks.innerHTML="Total Tasks: " + taskarr.length;
-  //  checkcount(taskarr);
-   window.reload();
+   checkcount(taskarr);
+
   }
 
-// function checkcount(taskarr){
-//   let checknum=0;
-//   taskarr.forEach((task)=>{
-//     if(task.check==true)
-//     checknum++;
-//   })
+function checkcount(taskarr){
+  let checknum=0;
+  taskarr.forEach((task)=>{
+    if(task.check==true)
+    checknum++;
+  })
   
-//   checknumdiv.innerHTML="Completed Tasks" + checknum;
-// }
+  checknumdiv.innerHTML="Completed Tasks " + checknum;
+  checktodonumdiv.innerHTML="Tasks To do " + (+ taskarr.length - checknum);
+}
