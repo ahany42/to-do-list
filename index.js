@@ -7,6 +7,10 @@ var totaltasks = document.querySelector(".totaltasks");
 var checknumdiv = document.querySelector(".checknumber");
 var checktodonumdiv = document.querySelector(".todotasks");
 totaltasks.innerHTML="Total Tasks: " + taskarr.length;
+var checknum=0;
+var total=0;
+
+
 checkcount(taskarr);
 
 // window.localStorage.clear();
@@ -24,7 +28,7 @@ function addfn(){
     tasktoarr(input.value);
     addelements(taskarr);
     input.value=" ";
-  
+    window.location.reload();
 
 } 
 else{
@@ -69,7 +73,7 @@ function tasktoarr(taskbody){
         checkbox.style.color=task.color;
         newdiv.style.textDecoration=task.textdecoration;
         save(taskarr);
-      
+        window.location.reload();
     }
       else{
         task.color="black";
@@ -80,6 +84,7 @@ function tasktoarr(taskbody){
         checkbox.style.color=task.color;
         newdiv.style.textDecoration=task.textdecoration;
         save(taskarr);
+        window.location.reload();
       }
      
      })
@@ -134,7 +139,7 @@ function deletallfn(){
   }
 
 function checkcount(taskarr){
-  let checknum=0;
+  checknum=0;
   taskarr.forEach((task)=>{
     if(task.check==true)
     checknum++;
@@ -142,4 +147,34 @@ function checkcount(taskarr){
   
   checknumdiv.innerHTML="Completed Tasks " + checknum;
   checktodonumdiv.innerHTML="Tasks To do " + (+ taskarr.length - checknum);
+  
+ 
+ 
 }
+ total=taskarr.length;
+ var donepercentage=checknum/total*100;
+
+
+ //progress circle
+ 
+  let circularProgress = document.querySelector(".circular-progress"),
+  progressValue = document.querySelector(".progress-value");
+  let counter = 0;  
+  donepercentage=Math.round(donepercentage);
+  var progressEndValue;
+
+  if(total==0 || checknum==0 || Number.isNaN(donepercentage)){
+    progressEndValue=0;
+    }
+  else{
+    progressEndValue=donepercentage;
+  }
+  let progress = setInterval(() => {
+  if(counter == progressEndValue){
+      clearInterval(progress);
+      counter--;
+  }  
+  counter++;
+  progressValue.innerHTML=counter + "%";
+  circularProgress.style.background = `conic-gradient(#395144 ${counter * 3.6}deg, #ededed 0deg)`  
+  }, 40);
