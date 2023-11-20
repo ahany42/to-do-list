@@ -1,2 +1,2 @@
 # To-do list
-using JavaScript
+To-do list website using JavaScript
